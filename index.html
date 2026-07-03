@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedikTest - Лечебное дело</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="title-block">
+        <div class="crumb">Первичная аккредитация (специалитет)</div>
+        <h1>Лечебное дело</h1>
+      </div>
+      <div class="top-stats" aria-label="Статистика">
+        <span id="questionTotal">5137 вопросов</span>
+        <span id="sectionTotal">62 темы</span>
+      </div>
+    </header>
+
+    <main id="workspace" class="workspace">
+      <aside class="sections-panel" aria-label="Темы">
+        <div class="sections-toolbar">
+          <span class="sections-heading">Темы</span>
+          <button id="sectionsToggle" class="sections-toggle" type="button" aria-label="Свернуть список тем" aria-expanded="true" title="Свернуть список тем">
+            <svg class="sections-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+        </div>
+        <button class="section-item is-active" type="button" data-section="all">
+          <span class="section-title">Все вопросы</span>
+          <span class="section-count" id="allCount">5137</span>
+        </button>
+        <div id="sectionsList" class="sections-list"></div>
+      </aside>
+
+      <section class="questions-panel" aria-label="Вопросы">
+        <div class="searchbar">
+          <label class="search-field">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Поиск по вопросам и ответам">
+          </label>
+          <select id="mobileSectionSelect" class="mobile-section-select" aria-label="Тема">
+            <option value="all">Все вопросы</option>
+          </select>
+          <div class="search-options" aria-label="Настройки поиска">
+            <label class="search-option">
+              <input id="searchAnswersToggle" type="checkbox">
+              <span>Искать в ответах</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="result-line">
+          <div>
+            <strong id="resultCount">0</strong>
+            <span id="resultLabel">найдено</span>
+          </div>
+          <div id="activeSection" class="active-section">Все вопросы</div>
+        </div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          Ничего не найдено
+        </div>
+
+        <div id="virtualViewport" class="virtual-viewport" tabindex="0" aria-label="Список вопросов">
+          <div id="virtualCanvas" class="virtual-canvas"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
