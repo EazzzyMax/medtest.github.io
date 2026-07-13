@@ -322,6 +322,51 @@
     if (cursor < text.length) node.appendChild(document.createTextNode(text.slice(cursor)));
   }
 
+  function taskImagePath(imageId) {
+    const fileName = window.MEDIKTEST_TASK_IMAGES?.[imageId];
+    if (fileName) return `task-images/${encodeURIComponent(fileName)}`;
+    const fallbackExtension = imageId.startsWith("table_") ? "png" : "jpg";
+    return `task-images/${encodeURIComponent(imageId)}.${fallbackExtension}`;
+  }
+
+  function appendRichText(node, rawText, item) {
+    const source = String(rawText || "");
+    const pattern = /<<<image:([^>]+)>>>/gi;
+    let cursor = 0;
+    let match;
+
+    while ((match = pattern.exec(source)) !== null) {
+      const text = displayText(source.slice(cursor, match.index));
+      if (text) appendHighlightedText(node, text, item);
+
+      const imageId = match[1].trim();
+      const link = document.createElement("a");
+      link.className = "case-image-link";
+      link.href = taskImagePath(imageId);
+      link.target = "_blank";
+      link.rel = "noopener";
+
+      const image = document.createElement("img");
+      image.className = "case-image";
+      image.src = link.href;
+      image.alt = `Изображение к задаче: ${imageId}`;
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.addEventListener("error", () => {
+        const fallback = document.createElement("span");
+        fallback.className = "image-reference";
+        fallback.textContent = `Изображение недоступно: ${imageId}`;
+        link.replaceWith(fallback);
+      });
+      link.appendChild(image);
+      node.appendChild(link);
+      cursor = pattern.lastIndex;
+    }
+
+    const tail = displayText(source.slice(cursor));
+    if (tail) appendHighlightedText(node, tail, item);
+  }
+
   function renderSections() {
     const fragment = document.createDocumentFragment();
     for (const topic of data.topics) {
@@ -671,7 +716,7 @@
       title.textContent = section.label;
       const text = document.createElement("p");
       text.className = "case-section-text";
-      appendHighlightedText(text, section._display, item);
+      appendRichText(text, section.text, item);
       row.append(title, text);
       description.appendChild(row);
     });
@@ -701,7 +746,7 @@
     number.textContent = String(index + 1);
     const prompt = document.createElement("p");
     prompt.className = "case-step-question";
-    appendHighlightedText(prompt, question._display, item);
+    appendRichText(prompt, question.question, item);
     header.append(number, prompt);
     section.appendChild(header);
 
@@ -716,12 +761,12 @@
       const body = document.createElement("div");
       body.className = "case-answer-body";
       const text = document.createElement("div");
-      appendHighlightedText(text, answer._display, item);
+      appendRichText(text, answer.text, item);
       body.appendChild(text);
       if (answer.correct && answer._explanationDisplay) {
         const explanation = document.createElement("p");
         explanation.className = "case-answer-explanation";
-        appendHighlightedText(explanation, answer._explanationDisplay, item);
+        appendRichText(explanation, answer.explanation, item);
         body.appendChild(explanation);
       }
       row.append(letter, body);
@@ -737,7 +782,7 @@
       title.textContent = "Результаты после ответа";
       const text = document.createElement("p");
       text.className = "case-result-text";
-      appendHighlightedText(text, question._resultDisplay, item);
+      appendRichText(text, question.result, item);
       result.append(title, text);
       section.appendChild(result);
     }

@@ -305,6 +305,25 @@
   font-size: 12px;
 }
 
+.case-image-link {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 12px 0;
+  border: 1px solid oklch(0.48 0.045 235);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 24px oklch(0.08 0.01 250 / 0.22);
+}
+
+.case-image {
+  display: block;
+  width: auto;
+  max-width: min(100%, 1100px);
+  height: auto;
+}
+
 @media (max-width: 760px) {
   .case-card-header {
     flex-direction: column;
