@@ -10,9 +10,14 @@
   <div class="app-shell">
     <header class="topbar">
       <div class="title-block">
-        <div class="crumb">Первичная аккредитация (специалитет)</div>
+        <div id="courseSection" class="crumb">Первичная аккредитация (специалитет)</div>
         <div class="title-row">
-          <h1>Лечебное дело</h1>
+          <h1>
+            <button id="coursePickerButton" class="course-picker-button" type="button" aria-haspopup="dialog" aria-label="Выбрать специальность">
+              <span id="courseTitle">Лечебное дело</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" /></svg>
+            </button>
+          </h1>
           <nav class="content-tabs" aria-label="Разделы базы">
             <a class="content-tab is-active" href="index.html" aria-current="page">Вопросы</a>
             <a class="content-tab" href="tasks.html">Задачи</a>
@@ -20,6 +25,7 @@
         </div>
       </div>
       <div class="top-stats" aria-label="Статистика">
+        <span id="courseLoadStatus" class="course-load-status" hidden>Загрузка базы…</span>
         <span id="questionTotal">5137 вопросов</span>
         <span id="sectionTotal">62 темы</span>
       </div>
@@ -78,7 +84,7 @@
     </main>
   </div>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="question-images/manifest.js"></script>
+  <script src="course-loader.js" data-kind="questions"></script>
 </body>
 </html>

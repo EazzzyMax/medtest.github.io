@@ -1,31 +1,26 @@
-# MedikTest
+# MedikTest: вопросы и задачи
 
-Static searchable MedikTest browser for questions and 12-step clinical cases from "Лечебное дело".
+Статический сайт с поиском вопросов/ответов и клинических задач MedikTest.
 
-## Files
+## Состояние
 
-- `index.html` - application shell.
-- `styles.css` - layout and visual styles.
-- `app.js` - search, filtering, highlighting, and virtualized rendering.
-- `data.js` - bundled question data.
-- `tasks.html` - clinical case browser.
-- `tasks.js` - case search, topic filtering, highlighting, and expandable case rendering.
-- `tasks-data.js` - bundled data for 539 clinical cases and their 6468 steps.
-- `tasks.css` - clinical case layout and responsive styles.
-- `task-images/` - 1000 locally bundled tables, scans, ECGs, and other case images.
-- `scripts/download_task_images.py` - repeatable image downloader for markers in `tasks-data.js`.
-- `CNAME` - GitHub Pages custom domain.
+- 183 курса из локальной базы приложения;
+- 410 583 вопроса и 15 677 клинических кейсов;
+- выбор курса через поиск в меню, данные загружаются лениво по выбранному курсу;
+- изображения вопросов и задач скачиваются в отдельные каталоги;
+- зашифрованная исходная БД хранится только в приватном репозитории через Git LFS.
 
-## Local preview
+Сайт: https://eazzzymax.github.io/medtest.github.io/tasks.html
+
+## Локальный запуск
 
 ```powershell
-python -m http.server 4173
+python -m http.server 8080
 ```
 
-Open `http://localhost:4173/`.
+Откройте `http://localhost:8080/tasks.html` или `http://localhost:8080/index.html`.
 
-## Refresh clinical case images
+## Обновление данных
 
-```powershell
-python .\scripts\download_task_images.py
-```
+Подробные инструкции и скрипты находятся в [`исходники/README.md`](./исходники/README.md).
+Публичный Pages-репозиторий не содержит SQLCipher-БД, ключи или Frida-логи.

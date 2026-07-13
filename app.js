@@ -542,6 +542,24 @@
 
     article.append(meta, text);
 
+    const imageFile = window.MEDIKTEST_QUESTION_IMAGES?.[question.imageRef];
+    if (imageFile) {
+      const imageLink = document.createElement("a");
+      imageLink.className = "question-image-link";
+      imageLink.href = `question-images/${encodeURIComponent(imageFile)}`;
+      imageLink.target = "_blank";
+      imageLink.rel = "noopener";
+      imageLink.setAttribute("aria-label", `Открыть изображение к вопросу ${question.number}`);
+      const image = document.createElement("img");
+      image.className = "question-image";
+      image.src = imageLink.href;
+      image.alt = `Изображение к вопросу ${question.number}`;
+      image.loading = "lazy";
+      image.decoding = "async";
+      imageLink.append(image);
+      article.append(imageLink);
+    }
+
     const answers = document.createElement("div");
     answers.className = "answers";
     question.answers.forEach((answer, index) => {
