@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedikTest — клинические задачи</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="title-block">
+        <div class="crumb">Первичная аккредитация (специалитет)</div>
+        <div class="title-row">
+          <h1>Лечебное дело</h1>
+          <nav class="content-tabs" aria-label="Разделы базы">
+            <a class="content-tab" href="index.html">Вопросы</a>
+            <a class="content-tab is-active" href="tasks.html" aria-current="page">Задачи</a>
+          </nav>
+        </div>
+      </div>
+      <div class="top-stats" aria-label="Статистика">
+        <span id="taskTotal">539 задач</span>
+        <span id="topicTotal">11 тем</span>
+      </div>
+    </header>
+
+    <main id="workspace" class="workspace">
+      <aside class="sections-panel" aria-label="Темы задач">
+        <div class="sections-toolbar">
+          <span class="sections-heading">Темы</span>
+          <button id="sectionsToggle" class="sections-toggle" type="button" aria-label="Свернуть список тем" aria-expanded="true" title="Свернуть список тем">
+            <svg class="sections-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+        </div>
+        <button class="section-item is-active" type="button" data-section="all">
+          <span class="section-title">Все задачи</span>
+          <span class="section-count" id="allCount">539</span>
+        </button>
+        <div id="sectionsList" class="sections-list"></div>
+      </aside>
+
+      <section class="questions-panel" aria-label="Клинические задачи">
+        <div class="searchbar">
+          <label class="search-field">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Поиск по условиям и вопросам">
+          </label>
+          <select id="mobileSectionSelect" class="mobile-section-select" aria-label="Тема">
+            <option value="all">Все задачи</option>
+          </select>
+          <div class="search-options" aria-label="Настройки поиска">
+            <label class="search-option">
+              <input id="searchAnswersToggle" type="checkbox">
+              <span>Искать в ответах и пояснениях</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="result-line">
+          <div>
+            <strong id="resultCount">0</strong>
+            <span id="resultLabel">задач найдено</span>
+          </div>
+          <div id="activeSection" class="active-section">Все задачи</div>
+        </div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          Ничего не найдено. Попробуйте изменить запрос или включить поиск в ответах.
+        </div>
+
+        <div id="virtualViewport" class="virtual-viewport" tabindex="0" aria-label="Список клинических задач">
+          <div id="virtualCanvas" class="virtual-canvas"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="tasks-data.js"></script>
+  <script src="tasks.js"></script>
+</body>
+</html>

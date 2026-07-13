@@ -76,6 +76,49 @@ button {
   min-width: 0;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.content-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid oklch(0.50 0.055 240);
+  border-radius: var(--radius);
+  background: oklch(0.245 0.045 240);
+}
+
+.content-tab {
+  color: oklch(0.84 0.025 235);
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.content-tab:hover {
+  color: var(--ink);
+  background: oklch(0.34 0.055 240);
+}
+
+.content-tab:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.content-tab.is-active {
+  color: oklch(0.16 0.025 235);
+  background: var(--accent-strong);
+  font-weight: 700;
+}
+
 .crumb {
   color: oklch(0.84 0.035 230);
   font-size: 13px;
@@ -592,6 +635,15 @@ mark::selection {
 
   h1 {
     font-size: 21px;
+  }
+
+  .title-row {
+    gap: 10px;
+  }
+
+  .content-tab {
+    padding: 6px 8px;
+    font-size: 13px;
   }
 
   .searchbar,

@@ -1,0 +1,357 @@
+.case-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  user-select: text;
+}
+
+.case-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+}
+
+.case-heading {
+  min-width: 0;
+}
+
+.case-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.case-number {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.case-topic {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.case-diagnosis {
+  margin: 0;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.36;
+  text-wrap: pretty;
+}
+
+.case-diagnosis.is-missing {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.case-preview {
+  display: -webkit-box;
+  max-width: 75ch;
+  margin: 9px 0 0;
+  overflow: hidden;
+  color: var(--muted);
+  line-height: 1.45;
+  white-space: pre-line;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.case-toggle {
+  flex: 0 0 auto;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 11px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.case-toggle:hover {
+  background: var(--surface-hover);
+  border-color: oklch(0.49 0.035 240);
+}
+
+.case-toggle:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.case-toggle-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 160ms ease;
+}
+
+.case-card.is-expanded .case-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.case-match-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.case-match {
+  display: grid;
+  grid-template-columns: minmax(110px, 150px) minmax(0, 1fr);
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 9px;
+}
+
+.case-match-label {
+  color: var(--dim);
+  font-size: 13px;
+}
+
+.case-match-text {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  line-height: 1.42;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.case-content {
+  border-top: 1px solid var(--line);
+}
+
+.case-description {
+  padding: 4px 18px 18px;
+}
+
+.case-section {
+  display: grid;
+  grid-template-columns: minmax(140px, 190px) minmax(0, 1fr);
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-section:last-child {
+  border-bottom: 0;
+}
+
+.case-section-title {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.case-section-text {
+  margin: 0;
+  max-width: 75ch;
+  color: oklch(0.89 0.008 250);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.case-questions-heading {
+  margin: 0;
+  padding: 15px 18px 4px;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.case-steps {
+  counter-reset: case-step;
+}
+
+.case-step {
+  padding: 18px;
+  border-top: 1px solid var(--line);
+  background: oklch(0.215 0.012 250);
+}
+
+.case-step:nth-child(even) {
+  background: oklch(0.225 0.013 250);
+}
+
+.case-step-header {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+}
+
+.case-step-number {
+  width: 32px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.case-step-question {
+  max-width: 75ch;
+  margin: 1px 0 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.48;
+  white-space: pre-wrap;
+}
+
+.case-answers {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0 43px;
+}
+
+.case-answer {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border: 1px solid oklch(0.34 0.014 250);
+  border-radius: 6px;
+  padding: 9px 10px;
+  background: oklch(0.19 0.012 250);
+  color: oklch(0.86 0.008 250);
+}
+
+.case-answer.is-correct {
+  border-color: oklch(0.61 0.12 148);
+  background: var(--correct-bg);
+  color: oklch(0.95 0.025 148);
+}
+
+.case-answer-letter {
+  width: 28px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: oklch(0.29 0.014 250);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.case-answer.is-correct .case-answer-letter {
+  background: var(--correct);
+  color: oklch(0.17 0.035 148);
+}
+
+.case-answer-body {
+  min-width: 0;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.case-answer-explanation {
+  margin: 8px 0 0;
+  border-top: 1px solid oklch(0.48 0.075 148);
+  padding-top: 8px;
+  color: oklch(0.86 0.035 148);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.case-result {
+  margin: 14px 0 0 43px;
+  border: 1px solid oklch(0.43 0.055 235);
+  border-radius: 6px;
+  padding: 12px;
+  background: oklch(0.25 0.035 235);
+}
+
+.case-result-title {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.case-result-text {
+  margin: 0;
+  max-width: 75ch;
+  color: oklch(0.89 0.015 235);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.image-reference {
+  display: inline-block;
+  margin: 3px 2px;
+  border: 1px solid oklch(0.48 0.045 235);
+  border-radius: 5px;
+  padding: 2px 6px;
+  background: oklch(0.285 0.035 235);
+  color: oklch(0.84 0.04 230);
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .case-card-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .case-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .case-match,
+  .case-section {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .case-match-text {
+    white-space: normal;
+  }
+
+  .case-answers,
+  .case-result {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-card-header,
+  .case-match-list,
+  .case-description,
+  .case-step {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .case-diagnosis {
+    font-size: 17px;
+  }
+
+  .case-step-header {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .case-step-number {
+    width: 28px;
+    height: 26px;
+  }
+}
